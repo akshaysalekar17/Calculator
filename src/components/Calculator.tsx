@@ -4,6 +4,7 @@ import { Code, Paintbrush, Users } from "lucide-react";
 import { Button } from "./ui/button";
 import { useToast } from "./ui/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Navbar } from "./Navbar";
 
 interface ResourceState {
   count: number;
@@ -118,10 +119,11 @@ export function Calculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-calculator-light-blue to-white py-12 px-4">
-      <div className="max-w-6xl mx-auto relative">
-        <div className="flex items-center mb-12">
-          <div className="text-center flex-1">
+    <div className="min-h-screen">
+      <Navbar />
+      <div className="bg-gradient-to-b from-calculator-light-blue to-white py-12 px-4">
+        <div className="max-w-6xl mx-auto relative">
+          <div className="text-center mb-12">
             <h2 className="text-lg font-medium text-blue-500 mb-2">
               TEAM COST CALCULATOR
             </h2>
@@ -133,52 +135,52 @@ export function Calculator() {
               Adjust the number of resources and engagement type to see the cost difference.
             </p>
           </div>
-        </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
-          <ResourceCard
-            title="Developer"
-            count={resources.developer.count}
-            onCountChange={(count) => updateResource("developer", { count })}
-            engagement={resources.developer.engagement}
-            onEngagementChange={(engagement) =>
-              updateResource("developer", { engagement })
-            }
-            icon={<Code className="w-6 h-6 text-calculator-blue" />}
-          />
-          <ResourceCard
-            title="Designer"
-            count={resources.designer.count}
-            onCountChange={(count) => updateResource("designer", { count })}
-            engagement={resources.designer.engagement}
-            onEngagementChange={(engagement) =>
-              updateResource("designer", { engagement })
-            }
-            icon={<Paintbrush className="w-6 h-6 text-calculator-blue" />}
-          />
-          <ResourceCard
-            title="Additional Roles"
-            count={resources.additional.count}
-            onCountChange={(count) => updateResource("additional", { count })}
-            engagement={resources.additional.engagement}
-            onEngagementChange={(engagement) =>
-              updateResource("additional", { engagement })
-            }
-            icon={<Users className="w-6 h-6 text-calculator-blue" />}
-          />
-        </div>
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <ResourceCard
+              title="Developer"
+              count={resources.developer.count}
+              onCountChange={(count) => updateResource("developer", { count })}
+              engagement={resources.developer.engagement}
+              onEngagementChange={(engagement) =>
+                updateResource("developer", { engagement })
+              }
+              icon={<Code className="w-6 h-6 text-calculator-blue" />}
+            />
+            <ResourceCard
+              title="Designer"
+              count={resources.designer.count}
+              onCountChange={(count) => updateResource("designer", { count })}
+              engagement={resources.designer.engagement}
+              onEngagementChange={(engagement) =>
+                updateResource("designer", { engagement })
+              }
+              icon={<Paintbrush className="w-6 h-6 text-calculator-blue" />}
+            />
+            <ResourceCard
+              title="Additional Roles"
+              count={resources.additional.count}
+              onCountChange={(count) => updateResource("additional", { count })}
+              engagement={resources.additional.engagement}
+              onEngagementChange={(engagement) =>
+                updateResource("additional", { engagement })
+              }
+              icon={<Users className="w-6 h-6 text-calculator-blue" />}
+            />
+          </div>
 
-        <div className="text-center mb-8">
-          <Button
-            size="lg"
-            className="bg-calculator-blue hover:bg-blue-700 text-white px-8"
-            onClick={handleCalculate}
-          >
-            Calculate Cost
-          </Button>
-        </div>
+          <div className="text-center mb-8">
+            <Button
+              size="lg"
+              className="bg-calculator-blue hover:bg-blue-700 text-white px-8"
+              onClick={handleCalculate}
+            >
+              Calculate Cost
+            </Button>
+          </div>
 
-        {showResults && calculateTotalCost()}
+          {showResults && calculateTotalCost()}
+        </div>
       </div>
     </div>
   );
