@@ -28,6 +28,7 @@ export default {
           blue: "#0066FF",
           "light-blue": "#DCEBF5",
           gray: "#64748B",
+          text: "#3A475D",
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",

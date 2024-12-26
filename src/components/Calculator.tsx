@@ -49,7 +49,7 @@ export function Calculator() {
       <div className="grid md:grid-cols-2 gap-6 mb-8">
         <Card className="bg-white shadow-lg">
           <CardHeader>
-            <CardTitle className="text-xl font-semibold">Talvantage Cost</CardTitle>
+            <CardTitle className="text-xl font-semibold text-calculator-text">Talvantage Cost</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-calculator-blue text-4xl font-bold mb-2">
@@ -63,10 +63,10 @@ export function Calculator() {
 
         <Card className="bg-white shadow-lg">
           <CardHeader>
-            <CardTitle className="text-xl font-semibold">In-house Cost</CardTitle>
+            <CardTitle className="text-xl font-semibold text-calculator-text">In-house Cost</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold mb-2">
+            <div className="text-calculator-text text-4xl font-bold mb-2">
               ${inhouseCost.toLocaleString()}
             </div>
             <div className="text-calculator-gray text-sm">
@@ -77,7 +77,7 @@ export function Calculator() {
 
         <Card className="md:col-span-2 bg-green-50">
           <CardHeader>
-            <CardTitle className="text-xl font-semibold text-center">Potential Savings</CardTitle>
+            <CardTitle className="text-xl font-semibold text-center text-calculator-text">Potential Savings</CardTitle>
           </CardHeader>
           <CardContent className="text-center">
             <div className="text-green-600 text-5xl font-bold mb-2">
@@ -113,7 +113,7 @@ export function Calculator() {
     <div className="min-h-screen bg-gradient-to-b from-calculator-light-blue to-white py-12 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold text-calculator-text mb-4">
             Hiring In-house vs Hiring through Talvantage
           </h1>
           <p className="text-lg text-calculator-gray max-w-2xl mx-auto">

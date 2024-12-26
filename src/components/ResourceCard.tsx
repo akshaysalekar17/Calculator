@@ -29,7 +29,7 @@ export function ResourceCard({
     <div className="bg-white p-6 rounded-xl shadow-lg transition-all hover:shadow-xl">
       <div className="flex items-center gap-3 mb-6">
         {icon || <Users className="w-6 h-6 text-calculator-blue" />}
-        <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
+        <h3 className="text-xl font-semibold text-calculator-text">{title}</h3>
       </div>
 
       <div className="space-y-4">
@@ -46,7 +46,7 @@ export function ResourceCard({
             >
               <Minus className="h-4 w-4" />
             </Button>
-            <span className="text-xl font-medium w-12 text-center">{count}</span>
+            <span className="text-xl font-medium w-12 text-center text-calculator-text">{count}</span>
             <Button
               variant="outline"
               size="icon"
