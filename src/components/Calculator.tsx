@@ -81,7 +81,7 @@ export function Calculator() {
           <div className="text-center mb-8">
             <Button
               size="lg"
-              className="bg-calculator-blue hover:bg-blue-700 text-white px-8"
+              className="bg-[#0080FF] hover:bg-[#0080FF]/90 text-white px-8"
               onClick={handleCalculate}
             >
               Calculate Cost
