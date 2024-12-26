@@ -54,24 +54,6 @@ export function Calculator() {
 
     return (
       <div className="space-y-8">
-        <div className="text-center">
-          <h2 className="text-4xl font-bold mb-4">
-            <span className="text-[#0080FF]">Save {savings.toFixed(1)}% Operational Cost</span>{" "}
-            <span className="text-[#3A475D]">By Hiring Through Talvantage</span>
-          </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-            Talvantage provides pre-vetted developers at affordable rates that can sync with your team to build your product
-          </p>
-          <Button 
-            variant="default"
-            size="lg"
-            className="bg-[#0080FF] hover:bg-blue-600 text-white rounded-full px-8"
-            onClick={() => window.open('https://app.youform.com/forms/0mkongkh', '_blank')}
-          >
-            Request Candidates
-          </Button>
-        </div>
-
         <div className="grid md:grid-cols-2 gap-6">
           <Card className="bg-white shadow-lg">
             <CardHeader>
@@ -114,6 +96,24 @@ export function Calculator() {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        <div className="text-center mt-12">
+          <h2 className="text-4xl font-bold mb-4">
+            <span className="text-[#0080FF]">Save {savings.toFixed(1)}% Operational Cost</span>{" "}
+            <span className="text-[#3A475D]">By Hiring Through Talvantage</span>
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+            Talvantage provides pre-vetted developers at affordable rates that can sync with your team to build your product
+          </p>
+          <Button 
+            variant="default"
+            size="lg"
+            className="bg-[#0080FF] hover:bg-blue-600 text-white rounded-full px-8"
+            onClick={() => window.open('https://app.youform.com/forms/0mkongkh', '_blank')}
+          >
+            Request Candidates
+          </Button>
         </div>
       </div>
     );
