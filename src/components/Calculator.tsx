@@ -224,6 +224,10 @@ export function Calculator() {
           </Button>
         </div>
       </div>
+
+      <div className="py-8 text-center text-gray-500 text-sm">
+        Copyright Reserved ©
+      </div>
     </div>
   );
 }
