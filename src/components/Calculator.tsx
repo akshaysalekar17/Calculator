@@ -120,27 +120,25 @@ export function Calculator() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-calculator-light-blue to-white py-12 px-4">
       <div className="max-w-6xl mx-auto relative">
-        <div 
-          className="absolute top-0 right-0 cursor-pointer"
-          onClick={handleLogoClick}
-        >
+        <div className="flex items-center mb-12">
           <img 
             src="/talvantage-logo.png" 
             alt="Talvantage Logo" 
-            className="h-12 w-auto hover:opacity-80 transition-opacity"
+            className="h-12 w-auto hover:opacity-80 transition-opacity cursor-pointer"
+            onClick={handleLogoClick}
           />
-        </div>
-        <div className="text-center mb-12">
-          <h2 className="text-lg font-medium text-blue-500 mb-2">
-            TEAM COST CALCULATOR
-          </h2>
-          <h1 className="text-4xl font-bold text-calculator-text mb-4">
-            Hiring In-house vs Hiring through Talvantage
-          </h1>
-          <p className="text-lg text-calculator-gray max-w-2xl mx-auto">
-            Compare the cost of building your team with Talvantage versus in-house hiring.
-            Adjust the number of resources and engagement type to see the cost difference.
-          </p>
+          <div className="ml-8 text-center flex-1">
+            <h2 className="text-lg font-medium text-blue-500 mb-2">
+              TEAM COST CALCULATOR
+            </h2>
+            <h1 className="text-4xl font-bold text-calculator-text mb-4">
+              Hiring In-house vs Hiring through Talvantage
+            </h1>
+            <p className="text-lg text-calculator-gray max-w-2xl mx-auto">
+              Compare the cost of building your team with Talvantage versus in-house hiring.
+              Adjust the number of resources and engagement type to see the cost difference.
+            </p>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-8">
