@@ -16,11 +16,12 @@ const HOURS = {
   "weekly": 40,
 };
 
-const TALVANTAGE_RATE = 20; // $20/hour
-const INHOUSE_RATE = 50; // $50/hour
+const TALVANTAGE_RATE = 20;
+const INHOUSE_RATE = 50;
 
 export function Calculator() {
   const { toast } = useToast();
+  const [showResults, setShowResults] = useState(false);
   const [resources, setResources] = useState({
     developer: { count: 1, engagement: "full-time" },
     designer: { count: 1, engagement: "full-time" },
@@ -93,6 +94,7 @@ export function Calculator() {
   };
 
   const handleCalculate = () => {
+    setShowResults(true);
     toast({
       title: "Cost Calculation Complete",
       description: "Your cost comparison has been calculated.",
@@ -107,6 +109,7 @@ export function Calculator() {
       ...prev,
       [type]: { ...prev[type], ...updates },
     }));
+    setShowResults(false);
   };
 
   return (
@@ -165,7 +168,7 @@ export function Calculator() {
           </Button>
         </div>
 
-        {calculateTotalCost()}
+        {showResults && calculateTotalCost()}
       </div>
     </div>
   );
