@@ -7,7 +7,7 @@ interface ResourceCardsProps {
     designer: ResourceState;
     additional: ResourceState;
   };
-  updateResource: (type: keyof typeof resources, updates: Partial<ResourceState>) => void;
+  updateResource: (type: "developer" | "designer" | "additional", updates: Partial<ResourceState>) => void;
 }
 
 export function ResourceCards({ resources, updateResource }: ResourceCardsProps) {

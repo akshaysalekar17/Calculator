@@ -67,7 +67,7 @@ export function Calculator() {
       <div className="bg-gradient-to-b from-calculator-light-blue to-white py-12 px-4">
         <div className="max-w-6xl mx-auto relative">
           <CalculatorHeader 
-            title="Hiring In-house vs Hiring through Talvantage"
+            title="Compare Talvantage With Hiring In-House"
             subtitle="TEAM COST CALCULATOR"
             description="Compare the cost of building your team with Talvantage versus in-house hiring.
               Adjust the number of resources and engagement type to see the cost difference."
