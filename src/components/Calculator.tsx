@@ -28,6 +28,11 @@ export function Calculator() {
     additional: { count: 0, engagement: "full-time" },
   });
 
+  const handleLogoClick = () => {
+    window.open('https://app.apollo.io/#/meet/introduction-call/30-min', '_blank');
+    window.open('https://www.talvantage.com', '_blank');
+  };
+
   const calculateCost = (rate: number) => {
     return Object.entries(resources).reduce((sum, [_, resource]) => {
       const hours = HOURS[resource.engagement as keyof typeof HOURS];
@@ -114,7 +119,17 @@ export function Calculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-calculator-light-blue to-white py-12 px-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto relative">
+        <div 
+          className="absolute top-0 right-0 cursor-pointer"
+          onClick={handleLogoClick}
+        >
+          <img 
+            src="/talvantage-logo.png" 
+            alt="Talvantage Logo" 
+            className="h-12 w-auto hover:opacity-80 transition-opacity"
+          />
+        </div>
         <div className="text-center mb-12">
           <h2 className="text-lg font-medium text-blue-500 mb-2">
             TEAM COST CALCULATOR
