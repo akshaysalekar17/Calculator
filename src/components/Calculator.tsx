@@ -182,6 +182,29 @@ export function Calculator() {
           {showResults && calculateTotalCost()}
         </div>
       </div>
+      
+      {/* New Blue Band Section */}
+      <div className="bg-[#0080FF] text-white py-20 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-4">
+            Build this team
+          </h2>
+          <h2 className="text-4xl font-bold mb-6">
+            with our expert advisor
+          </h2>
+          <p className="text-xl mb-8 max-w-3xl mx-auto">
+            Talvantage provides pre-vetted developers at affordable rates that can sync with your team to build your product
+          </p>
+          <Button 
+            variant="outline" 
+            size="lg"
+            className="bg-white text-[#0080FF] hover:bg-blue-50"
+            onClick={() => window.open('https://app.apollo.io/#/meet/introduction-call/30-min', '_blank')}
+          >
+            Schedule a Call
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }
