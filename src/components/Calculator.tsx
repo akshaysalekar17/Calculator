@@ -104,7 +104,7 @@ export function Calculator() {
             <span className="text-[#3A475D]">By Hiring Through Talvantage</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-            Talvantage provides pre-vetted developers at affordable rates that can sync with your team to build your product
+            Talvantage connects companies with top-tier software engineers and designers at competitive rates, enabling them to build remote teams on demand
           </p>
           <Button 
             variant="default"
@@ -212,7 +212,7 @@ export function Calculator() {
             with our expert advisor
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Talvantage provides pre-vetted developers at affordable rates that can sync with your team to build your product
+            Talvantage connects companies with top-tier software engineers and designers at competitive rates, enabling them to build remote teams on demand
           </p>
           <Button 
             variant="outline" 
