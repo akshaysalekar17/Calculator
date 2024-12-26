@@ -78,14 +78,14 @@ export function Calculator() {
 
         <Card className="md:col-span-2 bg-green-50">
           <CardHeader>
-            <CardTitle className="text-xl font-semibold">Potential Savings</CardTitle>
+            <CardTitle className="text-xl font-semibold text-center">Potential Savings</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-green-500 text-4xl font-bold mb-2">
-              {savings.toFixed(1)}%
-            </div>
-            <div className="text-green-600 text-xl">
+          <CardContent className="text-center">
+            <div className="text-green-600 text-5xl font-bold mb-2">
               ${totalSavings.toLocaleString()}
+            </div>
+            <div className="text-green-500 text-2xl">
+              {savings.toFixed(1)}%
             </div>
           </CardContent>
         </Card>
