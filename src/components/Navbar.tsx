@@ -1,6 +1,6 @@
 export function Navbar() {
   return (
-    <nav className="bg-gradient-to-r from-calculator-light-blue to-white py-4 px-6 shadow-md">
+    <nav className="py-4 px-6">
       <div className="max-w-6xl mx-auto">
         <img
           src="/talvantage-logo.png"
