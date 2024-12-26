@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ResourceCard } from "./ResourceCard";
-import { Code, Paintbrush, Users } from "lucide-react";
+import { Code, Users } from "lucide-react";
 import { Button } from "./ui/button";
 import { useToast } from "./ui/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
@@ -155,7 +155,7 @@ export function Calculator() {
               onEngagementChange={(engagement) =>
                 updateResource("designer", { engagement })
               }
-              icon={<Paintbrush className="w-6 h-6 text-calculator-blue" />}
+              icon={<img src="/lovable-uploads/b219b666-20ff-4514-a20c-2b833baf9d94.png" alt="Designer" className="w-6 h-6" />}
             />
             <ResourceCard
               title="Additional Roles"
