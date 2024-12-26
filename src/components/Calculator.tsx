@@ -21,6 +21,7 @@ const INHOUSE_RATE = 50; // $50/hour
 
 export function Calculator() {
   const { toast } = useToast();
+  const [showResults, setShowResults] = useState(false);
   const [resources, setResources] = useState({
     developer: { count: 1, engagement: "full-time" },
     designer: { count: 1, engagement: "full-time" },
@@ -83,6 +84,14 @@ export function Calculator() {
     );
   };
 
+  const handleCalculate = () => {
+    setShowResults(true);
+    toast({
+      title: "Cost Calculation Complete",
+      description: "Your cost comparison has been calculated.",
+    });
+  };
+
   const updateResource = (
     type: keyof typeof resources,
     updates: Partial<ResourceState>
@@ -91,6 +100,7 @@ export function Calculator() {
       ...prev,
       [type]: { ...prev[type], ...updates },
     }));
+    setShowResults(false); // Hide results when inputs change
   };
 
   return (
@@ -139,7 +149,17 @@ export function Calculator() {
           />
         </div>
 
-        {calculateTotalCost()}
+        <div className="text-center mb-8">
+          <Button
+            size="lg"
+            className="bg-calculator-blue hover:bg-blue-700 text-white px-8"
+            onClick={handleCalculate}
+          >
+            Calculate Cost
+          </Button>
+        </div>
+
+        {showResults && calculateTotalCost()}
       </div>
     </div>
   );
