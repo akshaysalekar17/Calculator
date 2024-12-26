@@ -165,7 +165,7 @@ export function Calculator() {
               onEngagementChange={(engagement) =>
                 updateResource("additional", { engagement })
               }
-              icon={<Users className="w-[72px] h-[72px] text-calculator-blue" />}
+              icon={<img src="/lovable-uploads/6dfd7373-98d0-4216-b075-d458d33d61ce.png" alt="Additional Roles" className="w-[72px] h-[72px]" />}
             />
           </div>
 
