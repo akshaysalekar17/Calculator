@@ -27,17 +27,17 @@ export function ResourceCard({
 }: ResourceCardProps) {
   return (
     <div className="bg-white p-6 rounded-xl shadow-lg transition-all hover:shadow-xl">
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex flex-col items-center gap-3 mb-6">
         {icon || <Users className="w-6 h-6 text-calculator-blue" />}
-        <h3 className="text-xl font-semibold text-calculator-text">{title}</h3>
+        <h3 className="text-xl font-semibold text-calculator-text text-center">{title}</h3>
       </div>
 
       <div className="space-y-4">
-        <div>
+        <div className="text-center">
           <label className="block text-sm text-calculator-gray mb-2">
             How many resources?
           </label>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center justify-center gap-3">
             <Button
               variant="outline"
               size="icon"
@@ -58,7 +58,7 @@ export function ResourceCard({
           </div>
         </div>
 
-        <div>
+        <div className="text-center">
           <label className="block text-sm text-calculator-gray mb-2">
             Type of engagement
           </label>
