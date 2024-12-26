@@ -145,7 +145,7 @@ export function Calculator() {
               onEngagementChange={(engagement) =>
                 updateResource("developer", { engagement })
               }
-              icon={<Code className="w-6 h-6 text-calculator-blue" />}
+              icon={<Code className="w-[72px] h-[72px] text-calculator-blue" />}
             />
             <ResourceCard
               title="Designer"
@@ -155,7 +155,7 @@ export function Calculator() {
               onEngagementChange={(engagement) =>
                 updateResource("designer", { engagement })
               }
-              icon={<img src="/lovable-uploads/b219b666-20ff-4514-a20c-2b833baf9d94.png" alt="Designer" className="w-6 h-6" />}
+              icon={<img src="/lovable-uploads/b219b666-20ff-4514-a20c-2b833baf9d94.png" alt="Designer" className="w-[72px] h-[72px]" />}
             />
             <ResourceCard
               title="Additional Roles"
@@ -165,7 +165,7 @@ export function Calculator() {
               onEngagementChange={(engagement) =>
                 updateResource("additional", { engagement })
               }
-              icon={<Users className="w-6 h-6 text-calculator-blue" />}
+              icon={<Users className="w-[72px] h-[72px] text-calculator-blue" />}
             />
           </div>
 
