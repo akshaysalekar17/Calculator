@@ -114,7 +114,7 @@ export function Calculator() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Team Cost Calculator
+            Hiring In-house vs Hiring through Talvantage
           </h1>
           <p className="text-lg text-calculator-gray max-w-2xl mx-auto">
             Compare the cost of building your team with Talvantage versus in-house hiring.
