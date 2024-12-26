@@ -121,13 +121,7 @@ export function Calculator() {
     <div className="min-h-screen bg-gradient-to-b from-calculator-light-blue to-white py-12 px-4">
       <div className="max-w-6xl mx-auto relative">
         <div className="flex items-center mb-12">
-          <img 
-            src="/talvantage-logo.png" 
-            alt="Talvantage Logo" 
-            className="h-12 w-auto hover:opacity-80 transition-opacity cursor-pointer"
-            onClick={handleLogoClick}
-          />
-          <div className="ml-8 text-center flex-1">
+          <div className="text-center flex-1">
             <h2 className="text-lg font-medium text-blue-500 mb-2">
               TEAM COST CALCULATOR
             </h2>
