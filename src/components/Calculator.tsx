@@ -39,6 +39,12 @@ export function Calculator() {
     const talvantageCost = calculateCost(TALVANTAGE_RATE);
     const inhouseCost = calculateCost(INHOUSE_RATE);
     const savings = ((inhouseCost - talvantageCost) / inhouseCost) * 100;
+    const totalSavings = inhouseCost - talvantageCost;
+
+    const isWeekly = Object.values(resources).some(
+      (resource) => resource.engagement === "weekly"
+    );
+    const estimateText = isWeekly ? "Weekly estimate" : "Monthly estimate";
 
     return (
       <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -51,7 +57,7 @@ export function Calculator() {
               ${talvantageCost.toLocaleString()}
             </div>
             <div className="text-calculator-gray text-sm">
-              Based on ${TALVANTAGE_RATE}/hour
+              {estimateText}
             </div>
           </CardContent>
         </Card>
@@ -65,7 +71,7 @@ export function Calculator() {
               ${inhouseCost.toLocaleString()}
             </div>
             <div className="text-calculator-gray text-sm">
-              Based on ${INHOUSE_RATE}/hour
+              {estimateText}
             </div>
           </CardContent>
         </Card>
@@ -75,8 +81,11 @@ export function Calculator() {
             <CardTitle className="text-xl font-semibold">Potential Savings</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-green-500 text-4xl font-bold">
+            <div className="text-green-500 text-4xl font-bold mb-2">
               {savings.toFixed(1)}%
+            </div>
+            <div className="text-green-600 text-xl">
+              ${totalSavings.toLocaleString()}
             </div>
           </CardContent>
         </Card>

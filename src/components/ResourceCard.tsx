@@ -69,7 +69,7 @@ export function ResourceCard({
             <SelectContent>
               <SelectItem value="full-time">Full time</SelectItem>
               <SelectItem value="part-time">Part time</SelectItem>
-              <SelectItem value="contract">Contract</SelectItem>
+              <SelectItem value="weekly">Weekly</SelectItem>
             </SelectContent>
           </Select>
         </div>
