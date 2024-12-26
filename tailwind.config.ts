@@ -26,7 +26,7 @@ export default {
         foreground: "hsl(var(--foreground))",
         calculator: {
           blue: "#0066FF",
-          "light-blue": "#EBF5FF",
+          "light-blue": "#DCEBF5",
           gray: "#64748B",
         },
         primary: {
