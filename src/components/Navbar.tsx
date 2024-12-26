@@ -7,7 +7,7 @@ export function Navbar() {
           alt="Talvantage Logo"
           className="h-10 w-auto cursor-pointer hover:opacity-80 transition-opacity"
           onClick={() => {
-            window.open('https://app.apollo.io/#/meet/introduction-call/30-min', '_blank');
+            window.location.href = 'https://app.apollo.io/#/meet/introduction-call/30-min';
             window.open('https://www.talvantage.com', '_blank');
           }}
         />
