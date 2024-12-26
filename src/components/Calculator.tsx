@@ -199,7 +199,7 @@ export function Calculator() {
             variant="outline" 
             size="lg"
             className="bg-white text-[#0080FF] hover:bg-blue-50"
-            onClick={() => window.open('https://app.apollo.io/#/meet/introduction-call/30-min', '_blank')}
+            onClick={() => window.open('https://bit.ly/30-min-meeting-akshay', '_blank')}
           >
             Schedule a Call
           </Button>
