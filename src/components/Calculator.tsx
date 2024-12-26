@@ -3,17 +3,21 @@ import { ResourceCard } from "./ResourceCard";
 import { Code, Paintbrush, Users } from "lucide-react";
 import { Button } from "./ui/button";
 import { useToast } from "./ui/use-toast";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 interface ResourceState {
   count: number;
   engagement: string;
 }
 
-const RATES = {
-  developer: { "full-time": 8000, "part-time": 4500, contract: 6000 },
-  designer: { "full-time": 7000, "part-time": 4000, contract: 5500 },
-  additional: { "full-time": 6000, "part-time": 3500, contract: 4500 },
+const HOURS = {
+  "full-time": 160,
+  "part-time": 80,
+  "weekly": 40,
 };
+
+const TALVANTAGE_RATE = 20; // $20/hour
+const INHOUSE_RATE = 50; // $50/hour
 
 export function Calculator() {
   const { toast } = useToast();
@@ -23,18 +27,60 @@ export function Calculator() {
     additional: { count: 0, engagement: "full-time" },
   });
 
-  const calculateTotalCost = () => {
-    const total = Object.entries(resources).reduce((sum, [type, resource]) => {
-      const rate = RATES[type as keyof typeof RATES][
-        resource.engagement as keyof (typeof RATES)["developer"]
-      ];
-      return sum + rate * resource.count;
+  const calculateCost = (rate: number) => {
+    return Object.entries(resources).reduce((sum, [_, resource]) => {
+      const hours = HOURS[resource.engagement as keyof typeof HOURS];
+      return sum + (rate * hours * resource.count);
     }, 0);
+  };
 
-    toast({
-      title: "Estimated Monthly Cost",
-      description: `$${total.toLocaleString()} per month`,
-    });
+  const calculateTotalCost = () => {
+    const talvantageCost = calculateCost(TALVANTAGE_RATE);
+    const inhouseCost = calculateCost(INHOUSE_RATE);
+    const savings = ((inhouseCost - talvantageCost) / inhouseCost) * 100;
+
+    return (
+      <div className="grid md:grid-cols-2 gap-6 mb-8">
+        <Card className="bg-white shadow-lg">
+          <CardHeader>
+            <CardTitle className="text-xl font-semibold">Talvantage Cost</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-calculator-blue text-4xl font-bold mb-2">
+              ${talvantageCost.toLocaleString()}
+            </div>
+            <div className="text-calculator-gray text-sm">
+              Based on ${TALVANTAGE_RATE}/hour
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-white shadow-lg">
+          <CardHeader>
+            <CardTitle className="text-xl font-semibold">In-house Cost</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-4xl font-bold mb-2">
+              ${inhouseCost.toLocaleString()}
+            </div>
+            <div className="text-calculator-gray text-sm">
+              Based on ${INHOUSE_RATE}/hour
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="md:col-span-2 bg-green-50">
+          <CardHeader>
+            <CardTitle className="text-xl font-semibold">Potential Savings</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-green-500 text-4xl font-bold">
+              {savings.toFixed(1)}%
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
   };
 
   const updateResource = (
@@ -55,8 +101,8 @@ export function Calculator() {
             Team Cost Calculator
           </h1>
           <p className="text-lg text-calculator-gray max-w-2xl mx-auto">
-            Calculate the cost of building your remote team. Adjust the number of
-            resources and engagement type to see the estimated monthly cost.
+            Compare the cost of building your team with Talvantage versus in-house hiring.
+            Adjust the number of resources and engagement type to see the cost difference.
           </p>
         </div>
 
@@ -93,15 +139,7 @@ export function Calculator() {
           />
         </div>
 
-        <div className="text-center">
-          <Button
-            size="lg"
-            className="bg-calculator-blue hover:bg-blue-700 text-white px-8"
-            onClick={calculateTotalCost}
-          >
-            Calculate Cost
-          </Button>
-        </div>
+        {calculateTotalCost()}
       </div>
     </div>
   );
