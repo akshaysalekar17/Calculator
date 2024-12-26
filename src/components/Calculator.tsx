@@ -118,30 +118,20 @@ export function Calculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-calculator-light-blue to-white">
-      <div className="w-full bg-gradient-to-b from-[#DCEBF5] to-white py-6 px-4">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
+    <div className="min-h-screen bg-gradient-to-b from-calculator-light-blue to-white py-12 px-4">
+      <div className="max-w-6xl mx-auto relative">
+        <div 
+          className="absolute top-0 right-0 cursor-pointer"
+          onClick={handleLogoClick}
+        >
           <img 
             src="/talvantage-logo.png" 
             alt="Talvantage Logo" 
-            className="h-8 w-auto"
+            className="h-12 w-auto hover:opacity-80 transition-opacity"
           />
-          <div 
-            className="cursor-pointer"
-            onClick={handleLogoClick}
-          >
-            <img 
-              src="/talvantage-logo.png" 
-              alt="Talvantage Logo" 
-              className="h-12 w-auto hover:opacity-80 transition-opacity"
-            />
-          </div>
         </div>
-      </div>
-      
-      <div className="max-w-6xl mx-auto px-4 pt-12">
         <div className="text-center mb-12">
-          <h2 className="text-lg font-medium text-calculator-blue mb-2">
+          <h2 className="text-lg font-medium text-blue-500 mb-2">
             TEAM COST CALCULATOR
           </h2>
           <h1 className="text-4xl font-bold text-calculator-text mb-4">
