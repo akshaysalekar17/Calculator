@@ -38,7 +38,11 @@ export function Calculator() {
   const calculateTotalCost = () => {
     const talvantageCost = calculateCost(TALVANTAGE_RATE);
     const inhouseCost = calculateCost(INHOUSE_RATE);
-    const savings = ((inhouseCost - talvantageCost) / inhouseCost) * 100;
+    
+    // Calculate savings using the new formula
+    const difference = inhouseCost - talvantageCost;
+    const sum = inhouseCost + talvantageCost;
+    const savings = (difference / sum) * 100;
     const totalSavings = inhouseCost - talvantageCost;
 
     const isWeekly = Object.values(resources).some(
