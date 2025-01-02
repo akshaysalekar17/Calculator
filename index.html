@@ -1,17 +1,447 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>resource-cost-o-matic</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
-    <meta property="og:image" content="/og-image.png" />
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talvantage Cost Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
 
-  <body>
-    <div id="root"></div>
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+        body {
+            background: linear-gradient(180deg, #DCEBF5 0%, #FFFFFF 100%);
+            color: #3A475D;
+            min-height: 100vh;
+        }
+
+        .nav {
+            padding: 1rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            height: 40px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 3rem;
+        }
+
+        .subtitle {
+            color: #0080FF;
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            color: #64748B;
+            font-size: 1.125rem;
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .resource-card:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .resource-icon {
+            width: 72px;
+            height: 72px;
+            margin-bottom: 1rem;
+        }
+
+        .resource-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .counter-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            border: 1px solid #E2E8F0;
+            background: white;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .counter-btn:hover {
+            background: #F8FAFC;
+        }
+
+        .counter-value {
+            font-size: 1.25rem;
+            width: 3rem;
+            text-align: center;
+        }
+
+        .select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #E2E8F0;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .calculate-btn {
+            background: #0080FF;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .calculate-btn:hover {
+            background: rgba(0, 128, 255, 0.9);
+        }
+
+        .results {
+            display: none;
+            margin-top: 2rem;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .result-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .savings-card {
+            background: #F0FDF4;
+            grid-column: 1 / -1;
+        }
+
+        .cta {
+            background: #0080FF;
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-description {
+            font-size: 1.25rem;
+            max-width: 42rem;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-btn {
+            background: white;
+            color: #0080FF;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background: #F8FAFC;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 2rem;
+            color: #64748B;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .toast.show {
+            display: block;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translate(-50%, 100%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <img src="/lovable-uploads/5c36d271-69d5-4f90-a1b6-3dfa9040fb9e.png" alt="Talvantage Logo" class="logo" onclick="handleLogoClick()">
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="header">
+            <p class="subtitle">TEAM COST CALCULATOR</p>
+            <h1 class="title">Compare Talvantage With Hiring In-House</h1>
+            <p class="description">Compare the cost of building your team with Talvantage versus in-house hiring. Adjust the number of resources and engagement type to see the cost difference.</p>
+        </header>
+
+        <div class="resource-grid">
+            <div class="resource-card">
+                <img src="/lovable-uploads/72072f5f-dbf6-42b3-87c5-de6cf89ec8b8.png" alt="Developer" class="resource-icon">
+                <h3 class="resource-title">Developer</h3>
+                <div class="counter">
+                    <button class="counter-btn" onclick="updateCount('developer', -1)">-</button>
+                    <span class="counter-value" id="developer-count">1</span>
+                    <button class="counter-btn" onclick="updateCount('developer', 1)">+</button>
+                </div>
+                <select class="select" id="developer-engagement" onchange="updateEngagement('developer')">
+                    <option value="full-time">Full time</option>
+                    <option value="part-time">Part time</option>
+                    <option value="weekly">Weekly</option>
+                </select>
+            </div>
+
+            <div class="resource-card">
+                <img src="/lovable-uploads/b219b666-20ff-4514-a20c-2b833baf9d94.png" alt="Designer" class="resource-icon">
+                <h3 class="resource-title">Designer</h3>
+                <div class="counter">
+                    <button class="counter-btn" onclick="updateCount('designer', -1)">-</button>
+                    <span class="counter-value" id="designer-count">1</span>
+                    <button class="counter-btn" onclick="updateCount('designer', 1)">+</button>
+                </div>
+                <select class="select" id="designer-engagement" onchange="updateEngagement('designer')">
+                    <option value="full-time">Full time</option>
+                    <option value="part-time">Part time</option>
+                    <option value="weekly">Weekly</option>
+                </select>
+            </div>
+
+            <div class="resource-card">
+                <img src="/lovable-uploads/6dfd7373-98d0-4216-b075-d458d33d61ce.png" alt="Additional Roles" class="resource-icon">
+                <h3 class="resource-title">Additional Roles</h3>
+                <div class="counter">
+                    <button class="counter-btn" onclick="updateCount('additional', -1)">-</button>
+                    <span class="counter-value" id="additional-count">0</span>
+                    <button class="counter-btn" onclick="updateCount('additional', 1)">+</button>
+                </div>
+                <select class="select" id="additional-engagement" onchange="updateEngagement('additional')">
+                    <option value="full-time">Full time</option>
+                    <option value="part-time">Part time</option>
+                    <option value="weekly">Weekly</option>
+                </select>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <button class="calculate-btn" onclick="calculateCost()">Calculate Cost</button>
+        </div>
+
+        <div class="results" id="results">
+            <div class="results-grid">
+                <div class="result-card">
+                    <h3>Talvantage Cost</h3>
+                    <div id="talvantage-cost" style="font-size: 2rem; color: #0080FF; margin: 0.5rem 0;"></div>
+                    <div id="estimate-text" style="color: #64748B;"></div>
+                </div>
+
+                <div class="result-card">
+                    <h3>In-house Cost</h3>
+                    <div id="inhouse-cost" style="font-size: 2rem; margin: 0.5rem 0;"></div>
+                    <div id="estimate-text-2" style="color: #64748B;"></div>
+                </div>
+
+                <div class="result-card savings-card">
+                    <h3 style="text-align: center;">Potential Savings</h3>
+                    <div id="total-savings" style="font-size: 3rem; color: #22C55E; text-align: center; margin: 0.5rem 0;"></div>
+                    <div id="savings-percentage" style="color: #22C55E; font-size: 1.5rem; text-align: center;"></div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">
+                    <span style="color: #0080FF;">Save <span id="savings-text"></span></span>
+                    <span>By Hiring Through Talvantage</span>
+                </h2>
+                <p style="font-size: 1.125rem; color: #64748B; max-width: 42rem; margin: 0 auto 2rem;">
+                    Talvantage connects companies with top-tier software engineers and designers at competitive rates, enabling them to build remote teams on demand
+                </p>
+                <button class="calculate-btn" onclick="window.open('https://app.youform.com/forms/0mkongkh', '_blank')">
+                    Request Candidates
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta">
+        <div class="container">
+            <h2 class="cta-title">Build this team<br>with our expert advisor</h2>
+            <p class="cta-description">
+                Talvantage connects companies with top-tier software engineers and designers at competitive rates, enabling them to build remote teams on demand
+            </p>
+            <button class="cta-btn" onclick="window.open('https://bit.ly/30-min-meeting-akshay', '_blank')">
+                Schedule a Call
+            </button>
+        </div>
+    </div>
+
+    <div class="copyright">
+        Copyright Reserved ©
+    </div>
+
+    <div class="toast" id="toast">
+        Cost calculation complete
+    </div>
+
+    <script>
+        const HOURS = {
+            "full-time": 160,
+            "part-time": 80,
+            "weekly": 40
+        };
+
+        const TALVANTAGE_RATE = 20;
+        const INHOUSE_RATE = 50;
+
+        const resources = {
+            developer: { count: 1, engagement: "full-time" },
+            designer: { count: 1, engagement: "full-time" },
+            additional: { count: 0, engagement: "full-time" }
+        };
+
+        function handleLogoClick() {
+            window.location.href = 'https://bit.ly/30-min-meeting-akshay';
+            window.open('https://www.talvantage.com', '_blank');
+        }
+
+        function updateCount(type, change) {
+            const newCount = Math.max(0, resources[type].count + change);
+            resources[type].count = newCount;
+            document.getElementById(`${type}-count`).textContent = newCount;
+            document.getElementById('results').classList.remove('show');
+        }
+
+        function updateEngagement(type) {
+            const engagement = document.getElementById(`${type}-engagement`).value;
+            resources[type].engagement = engagement;
+            document.getElementById('results').classList.remove('show');
+        }
+
+        function calculateCost() {
+            const talvantageCost = Object.values(resources).reduce((sum, resource) => {
+                const hours = HOURS[resource.engagement];
+                return sum + (TALVANTAGE_RATE * hours * resource.count);
+            }, 0);
+
+            const inhouseCost = Object.values(resources).reduce((sum, resource) => {
+                const hours = HOURS[resource.engagement];
+                return sum + (INHOUSE_RATE * hours * resource.count);
+            }, 0);
+
+            const savings = ((inhouseCost - talvantageCost) / inhouseCost) * 100;
+            const totalSavings = inhouseCost - talvantageCost;
+            const isWeekly = Object.values(resources).some(resource => resource.engagement === "weekly");
+            const estimateText = isWeekly ? "Weekly estimate" : "Monthly estimate";
+
+            document.getElementById('talvantage-cost').textContent = `$${talvantageCost.toLocaleString()}`;
+            document.getElementById('inhouse-cost').textContent = `$${inhouseCost.toLocaleString()}`;
+            document.getElementById('total-savings').textContent = `$${totalSavings.toLocaleString()}`;
+            document.getElementById('savings-percentage').textContent = `${savings.toFixed(1)}%`;
+            document.getElementById('savings-text').textContent = `${savings.toFixed(1)}% Operational Cost`;
+            document.getElementById('estimate-text').textContent = estimateText;
+            document.getElementById('estimate-text-2').textContent = estimateText;
+            
+            document.getElementById('results').classList.add('show');
+            showToast();
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
 </html>
